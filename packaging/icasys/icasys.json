@@ -1,0 +1,18 @@
+{
+  "app": "designcraft",
+  "name": "ICASYS Maquetación",
+  "slug": "maquetacion",
+  "upstream_name": "DesignCraft",
+  "upstream_base": "33a467872268c98536231491865b4011b0275b17",
+  "owner": "arodrigosote",
+  "es_ui": true,
+  "deb_section": "graphics",
+  "cli": "designcraft-cli",
+  "cli_project_ext": "designcraft",
+  "mcp": {
+    "headless": "mcp --sample",
+    "attach": "mcp --connect 9876",
+    "auth": "none",
+    "project": ""
+  }
+}

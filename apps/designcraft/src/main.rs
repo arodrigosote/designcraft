@@ -302,7 +302,7 @@ fn main() -> std::process::ExitCode {
     }
     let mut options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
-            .with_title("DesignCraft")
+            .with_title("ICASYS Maquetación")
             .with_inner_size([1440.0, 900.0])
             .with_min_inner_size([900.0, 560.0])
             .with_decorations(!cfg!(target_os = "windows"))
@@ -412,7 +412,7 @@ fn main() -> std::process::ExitCode {
                         // A processor chosen by `WGPU_POWER_PREF` can be the one that can't show the window.
                         let hint = if chosen_gpu { " (without WGPU_POWER_PREF it uses the one that drives your display)" } else { "" };
                         restarted = Some(format!(
-                            "The graphics processor tried first couldn't show the window, so DesignCraft started again on {} ({:?}, {:?}){hint}.",
+                            "The graphics processor tried first couldn't show the window, so ICASYS Maquetación started again on {} ({:?}, {:?}){hint}.",
                             info.name.trim(),
                             info.backend,
                             info.device_type

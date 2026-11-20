@@ -31,7 +31,7 @@ impl Default for Runtime {
     fn default() -> Self {
         Self {
             #[cfg(not(target_arch = "wasm32"))]
-            updater: Updater::new(&crate::UPDATE_APP, env!("CARGO_PKG_VERSION")),
+            updater: Updater::new(&crate::UPDATE_APP, env!("CARGO_PKG_VERSION")).with_source(::std::sync::Arc::new(|| -> ::std::result::Result<::std::option::Option<::craft_update::Release>, ::std::string::String> { Err(::std::string::String::from("ICASYS apps are updated by ICASYS: https://icasys.mx / Las apps de ICASYS se actualizan desde ICASYS: https://icasys.mx")) })),
             #[cfg(not(target_arch = "wasm32"))]
             startup_check: false,
             #[cfg(not(target_arch = "wasm32"))]
@@ -118,7 +118,7 @@ pub(crate) fn show(app: &mut DesignApp, ctx: &egui::Context) {
     #[cfg(target_arch = "wasm32")]
     if app.updates_rt.manual_window_open {
         let mut open = true;
-        let title = crate::i18n::tr(&app.ui.language, "DesignCraft Updates");
+        let title = crate::i18n::tr(&app.ui.language, "ICASYS Maquetación Updates");
         let ok_label = crate::i18n::tr(&app.ui.language, "OK");
         egui::Window::new(title)
             .open(&mut open)
@@ -166,7 +166,7 @@ mod tests {
             tag: "v99.0.0".into(),
             version: craft_update::parse_version("99.0.0"),
             name: "DesignCraft 99.0.0".into(),
-            html_url: "https://github.com/storytold/designcraft/releases/tag/v99.0.0".into(),
+            html_url: "https://github.com/arodrigosote/designcraft/releases/tag/v99.0.0".into(),
             ..Default::default()
         };
         app.updates_rt.updater.offer(release);

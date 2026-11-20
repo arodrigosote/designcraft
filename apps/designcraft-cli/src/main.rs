@@ -215,7 +215,7 @@ fn main() -> ExitCode {
         Some("thumbnail") => report(thumbnail(&args[1..])),
         Some("links") => {
             use designcraft_engine::links::{APP_PAGE, DISCORD, GITHUB, ISSUES, WEBSITE};
-            outln!("Discord   {DISCORD}\nWebsite   {WEBSITE}\nApp page  {APP_PAGE}\nGitHub    {GITHUB}\nIssues    {ISSUES}");
+            outln!("ICASYS    {DISCORD}\nWebsite   {WEBSITE}\nApp page  {APP_PAGE}\nGitHub    {GITHUB}\nIssues    {ISSUES}");
             ExitCode::SUCCESS
         }
         // Asking for help is not an error: it goes to stdout and succeeds. An unknown command

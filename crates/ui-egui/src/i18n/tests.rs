@@ -546,7 +546,7 @@ fn interface_strings() -> HashSet<&'static str> {
         "Auto Rename",
         "Character Style",
         "Company",
-        "DesignCraft page",
+        "ICASYS Maquetación page",
         "Equal fixed heights for the selected rows; cell text may become overset.",
         "Found",
         "Grab bag",

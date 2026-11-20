@@ -9,22 +9,22 @@ use serde_json::json;
 use crate::DesignApp;
 use crate::theme::{Tokens, semibold};
 
-/// ArtCraft brand blue (from `docs/brand/artcraft-mark.svg`).
-pub const BRAND: Color32 = Color32::from_rgb(0x4e, 0x7b, 0xfb);
-/// Discord's brand colour, used for the "Join our Discord" buttons (colour only; no Discord artwork).
-pub const DISCORD: Color32 = Color32::from_rgb(0x58, 0x65, 0xf2);
+/// ICASYS blue (#014BA0), the colour of the isotype.
+pub const BRAND: Color32 = Color32::from_rgb(0x01, 0x4b, 0xa0);
+/// Discord's brand colour, used for the "Visit ICASYS" buttons (colour only; no Discord artwork).
+pub const DISCORD: Color32 = Color32::from_rgb(0x01, 0x4b, 0xa0);
 
-/// The ArtCraft mark outline (viewBox -10 -19.42 136.34 136.34), from `docs/brand/artcraft-mark.svg`.
-const MARK_PATH: &str = "M104.28,49.49L81.55,0h-31.23l-3.17,4.76L14.75,53.63,0,75.85l21.55,21.55,63.79-36.94,16.99,37.04,14.01-21.74-12.06-26.27ZM32.89,65.66l32.42-48.87,10.91,23.77-43.32,25.09Z";
+/// The ICASYS isotype (icasys-brand/src/icasys-isotipo.svg), fitted to the viewBox -10 -19.42 136.34 136.34.
+const MARK_PATH: &str = "M28.66,13.08L49.25,13.08L16.04,46.28L-4.55,46.28ZM67.23,13.08L87.82,13.08L120.89,46.28L100.3,46.28ZM-4.55,51.22L16.04,51.22L49.25,84.28L28.66,84.28ZM100.3,51.22L120.89,51.22L87.82,84.28L67.23,84.28ZM58.24,13.08L93.77,48.9L58.24,84.28L22.72,48.9ZM47.95,-6.21L52.15,-6.21L67.52,9.16L63.32,9.16ZM56.07,-6.21L60.27,-6.21L75.64,9.16L71.44,9.16ZM64.33,-6.21L68.54,-6.21L83.76,9.16L79.7,9.16ZM32.87,9.16L36.93,9.16L48.09,-2L45.92,-4.18ZM40.99,9.16L45.19,9.16L52.15,2.2L49.98,0.03ZM49.25,9.16L53.31,9.16L56.21,6.26L54.18,4.23ZM32.72,88.48L36.93,88.48L52.15,103.71L47.95,103.71ZM40.99,88.48L45.19,88.48L60.27,103.71L56.21,103.71ZM49.25,88.48L53.31,88.48L68.54,103.71L64.33,103.71ZM60.27,91.38L62.3,93.41L67.23,88.48L63.17,88.48ZM64.33,95.44L66.36,97.47L75.64,88.48L71.44,88.48ZM68.39,99.5L70.42,101.53L83.76,88.48L79.7,88.48Z";
 
 /// The other ArtCraft apps (app-page slug, name, what it is) — same list as the README.
 pub const SIBLINGS: &[(&str, &str, &str)] = &[
-    ("photocraft", "PhotoCraft", "image editing"),
-    ("vectorcraft", "VectorCraft", "vector illustration"),
-    ("filmcraft", "FilmCraft", "video editing, color and sound"),
-    ("lightcraft", "LightCraft", "photo library and raw development"),
-    ("pdfcraft", "PdfCraft", "reading, organizing and protecting PDFs"),
-    ("effectcraft", "EffectCraft", "motion graphics and visual effects"),
+    ("photocraft", "ICASYS Foto", "image editing"),
+    ("vectorcraft", "ICASYS Vectores", "vector illustration"),
+    ("filmcraft", "ICASYS Video", "video editing, color and sound"),
+    ("lightcraft", "ICASYS Revelado", "photo library and raw development"),
+    ("pdfcraft", "ICASYS PDF", "reading, organizing and protecting PDFs"),
+    ("effectcraft", "ICASYS Efectos", "motion graphics and visual effects"),
 ];
 
 /// The About window's tabs, in `UiState::about_tab` order (`help.about {tab}` names them in lowercase).
@@ -83,7 +83,7 @@ pub fn discord_button_size(ctx: &egui::Context, label: &str, min: egui::Vec2) ->
     egui::vec2(min.x.max(min.y * 0.5 + 8.0 + galley.size().x + min.y), min.y)
 }
 
-/// The big "Join our Discord" button. Returns true when clicked. `size` is the minimum: a longer label
+/// The big "Visit ICASYS" button. Returns true when clicked. `size` is the minimum: a longer label
 /// widens the button (see `discord_button_size`) rather than spilling out of it.
 pub fn discord_button(ui: &mut egui::Ui, label: &str, size: egui::Vec2) -> bool {
     let size = discord_button_size(ui.ctx(), label, size);
@@ -93,7 +93,7 @@ pub fn discord_button(ui: &mut egui::Ui, label: &str, size: egui::Vec2) -> bool 
     let total = icon + 8.0 + galley.size().x;
     let (r, resp) = ui.allocate_exact_size(size, Sense::click());
     let resp = resp.on_hover_text(links::DISCORD).on_hover_cursor(egui::CursorIcon::PointingHand);
-    let fill = if resp.hovered() { Color32::from_rgb(0x47, 0x52, 0xc4) } else { DISCORD };
+    let fill = if resp.hovered() { Color32::from_rgb(0x01, 0x3a, 0x7d) } else { DISCORD };
     ui.painter().rect_filled(r, size.y / 2.0, fill);
     let x0 = r.center().x - total / 2.0;
     paint_chat_icon(ui.painter(), pos2(x0 + icon / 2.0, r.center().y), icon, Color32::WHITE);
@@ -160,7 +160,7 @@ pub fn show(app: &mut DesignApp, ctx: &egui::Context) {
             ui.add_space(6.0);
             ui.label(crate::rtl::widget(
                 ui,
-                egui::RichText::new(crate::i18n::tr(&app.ui.language, "DesignCraft")).font(semibold(26.0)).color(t.text_strong),
+                egui::RichText::new(crate::i18n::tr(&app.ui.language, "ICASYS Maquetación")).font(semibold(26.0)).color(t.text_strong),
             ));
             crate::rtl::label(
                 ui,
@@ -177,18 +177,18 @@ pub fn show(app: &mut DesignApp, ctx: &egui::Context) {
             ));
             ui.label(crate::rtl::widget(
                 ui,
-                egui::RichText::new(crate::i18n::tr(&app.ui.language, "Part of the ArtCraft suite of open creative tools."))
+                egui::RichText::new(crate::i18n::tr(&app.ui.language, "ICASYS edition, based on DesignCraft by the ArtCraft team."))
                     .size(12.0)
                     .color(t.text_dim),
             ));
             ui.add_space(16.0);
-            if discord_button(ui, crate::i18n::tr(&app.ui.language, "Join the ArtCraft Discord"), vec2(300.0, 40.0)) {
+            if discord_button(ui, crate::i18n::tr(&app.ui.language, "ICASYS Community"), vec2(300.0, 40.0)) {
                 open = Some("discord");
             }
             ui.add_space(4.0);
             ui.label(crate::rtl::widget(
                 ui,
-                egui::RichText::new(crate::i18n::tr(&app.ui.language, "discord.gg/artcraft — help, feedback and show-and-tell"))
+                egui::RichText::new(crate::i18n::tr(&app.ui.language, "icasys.mx — help and information"))
                     .size(11.0)
                     .color(t.text_dim),
             ));
@@ -198,7 +198,7 @@ pub fn show(app: &mut DesignApp, ctx: &egui::Context) {
                 let w = 330.0;
                 ui.add_space(((ui.available_width() - w) / 2.0).max(0.0));
                 for (text, key) in
-                    [("DesignCraft page", "appPage"), ("GitHub", "github"), ("getartcraft.com", "website"), ("Report an issue", "issues")]
+                    [("ICASYS Maquetación page", "appPage"), ("GitHub", "github"), ("icasys.mx", "website"), ("Report an issue", "issues")]
                 {
                     if link(ui, crate::i18n::tr(&app.ui.language, text), links::get(key).unwrap_or_default(), t.accent) {
                         open = Some(key);
@@ -211,7 +211,7 @@ pub fn show(app: &mut DesignApp, ctx: &egui::Context) {
             ui.add_space(6.0);
             ui.label(crate::rtl::widget(
                 ui,
-                egui::RichText::new(crate::i18n::tr(&app.ui.language, "More ArtCraft apps")).font(semibold(12.0)).color(t.text_strong),
+                egui::RichText::new(crate::i18n::tr(&app.ui.language, "More ICASYS apps")).font(semibold(12.0)).color(t.text_strong),
             ));
             ui.add_space(4.0);
             ui.horizontal(|ui| {

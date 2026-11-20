@@ -28,9 +28,9 @@
     <string>zh-Hans</string>
   </array>
   <key>CFBundleDisplayName</key>
-  <string>DesignCraft</string>
+  <string>ICASYS Maquetación</string>
   <key>CFBundleName</key>
-  <string>DesignCraft</string>
+  <string>ICASYS Maquetación</string>
   <key>CFBundleExecutable</key>
   <string>DesignCraft</string>
   <key>CFBundleIdentifier</key>
@@ -72,7 +72,7 @@
   <array>
     <dict>
       <key>CFBundleTypeName</key>
-      <string>DesignCraft Document</string>
+      <string>ICASYS Maquetación Document</string>
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>LSHandlerRank</key>
@@ -130,7 +130,7 @@
       <key>UTTypeIdentifier</key>
       <string>ai.storyteller.designcraft.document</string>
       <key>UTTypeDescription</key>
-      <string>DesignCraft Document</string>
+      <string>ICASYS Maquetación Document</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
